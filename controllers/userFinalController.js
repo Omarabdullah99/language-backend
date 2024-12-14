@@ -83,3 +83,6 @@ export const signin = async (req, res) => {
 export const testUser = async (req, res) => {
   res.status(200).json({ message: "ok router" });
 };
+export const tesAdmin= async (req, res) => {
+  res.status(200).json({ message: "admin ok router" });
+};
