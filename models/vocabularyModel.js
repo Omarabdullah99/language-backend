@@ -1,3 +1,4 @@
+
 import mongoose from "mongoose";
 
 const vocabularySchema = new mongoose.Schema({
@@ -8,8 +9,7 @@ const vocabularySchema = new mongoose.Schema({
   adminEmail: { type: String },
 });
 
+const vocabularyModel =
+  mongoose.models.vocabulary || mongoose.model("vocabulary", vocabularySchema);
 
-const vocabulayModel =
-  mongoose.models.vocabulay || mongoose.model("vocabulay", vocabularySchema);
-
-export default vocabulayModel;
+export default vocabularyModel;
