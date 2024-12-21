@@ -4,6 +4,7 @@ import "dotenv/config";
 import connectDB from "./config/mongodb.js";
 import userFinalRouter from "./routes/userFinalRoute.js";
 import lessonRouter from "./routes/lessonRoute.js";
+import vocabularyRouter from "./routes/vocabularyRoute.js";
 
 //app config
 const app = express();
@@ -21,6 +22,7 @@ app.use(express.urlencoded({ extended: true })); // Added line
 //api endpoing
 app.use("/api/userFinal", userFinalRouter);
 app.use("/api/lesson",lessonRouter)
+app.use("/api/voca",vocabularyRouter)
 
 app.get("/", (req, res) => {
   res.send("api worikg");
