@@ -38,3 +38,52 @@ export const addVocabularyToLesson = async (req, res) => {
       res.status(400).json({ error: error.message });
     }
   };
+
+
+  export const updateVocabulary= async(req,res)=>{
+    try {
+        const {id}= req.params
+        const updateData= req.body
+        const updatedVocabulary = await vocabularyModel.findByIdAndUpdate(
+            id,
+            updateData,
+            { new: true, runValidators: true }
+          );
+          if (!updatedVocabulary) {
+            return res.status(404).json({ error: "Vocabulary not found" });
+          }
+      
+          res.status(200).json(updatedVocabulary);
+        
+    } catch (error) {
+        res.status(400).json({ error: error.message });
+    }
+  }
+
+  export const deleteVocabulary = async (req, res) => {
+    try {
+      await vocabularyModel.findByIdAndDelete(req.params.id);
+      res.json({ message: "Vocabulary deleted successfully" });
+    } catch (error) {
+      res.status(400).json({ error: error.message });
+    }
+  };
+
+
+  export const getAllVocabularies = async (req, res) => {
+    try {
+      const vocabularies = await vocabularyModel.find();
+      res.json(vocabularies);
+    } catch (error) {
+      res.status(400).json({ error: error.message });
+    }
+  };
+  
+  export const getVocaById = async (req, res) => {
+    try {
+      const vocabulary = await vocabularyModel.findById(req.params.id);
+      res.json(vocabulary);
+    } catch (error) {
+      res.status(400).json({ error: error.message });
+    }
+  };
